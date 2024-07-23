@@ -115,3 +115,28 @@
 		width: 80%;
 	}
 }
+
+.about-skills {
+	padding: 0px 20px; /* Adjust padding to provide spacing around the content */
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add box-shadow for shadow type border */
+	border-radius: 8px; /* Optional: Add border-radius for rounded corners */
+	background-color: #ffffff; /* Optional: Add background color */
+	max-width: 400px; /* Example: Set a max-width to contain the skills section */
+	margin: 0 auto; /* Example: Center the skills section horizontally */
+	margin-left: 0px;
+  }
+  
+  .about-skills h3 {
+	font-size: 1.2em; /* Example: Adjust font size */
+  }
+  
+  .about-skills ul {
+	list-style-type: none; /* Example: Remove default list style */
+	padding-left: 0; /* Example: Remove default padding */
+  }
+  
+  .about-skills li {
+	margin-bottom: 5px; /* Example: Adjust margin between list items */
+  }
+  
+  

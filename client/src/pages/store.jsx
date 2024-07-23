@@ -40,12 +40,12 @@ const Store = () => {
 					<div className="store-container">
 						<div className="store-main">
 							<div className="store-right-side">
-								<div className="title store-title">
-									{INFO.about.title}
+								<div className="store-title">
+									{INFO.store.title}
 								</div>
 
-								<div className="subtitle about-subtitle">
-									{INFO.about.description}
+								<div className="store-subtitle">
+									{INFO.store.description}
 								</div>
 							</div>
 

@@ -37,9 +37,15 @@ const INFO = {
 	},
 
 	articles: {
-		title: "I'm passionate about pushing the boundaries of what's possible and inspiring the next generation of innovators.",
+		title: "I'm actively programming and documenting my journey.",
 		description:
-			"Chronological collection of my long-form thoughts on programming, leadership, product design, and more.",
+			"Below you will find a timeline of my latest articles and discoveries.",
+	},
+
+	store: {
+		title: "Store",
+		description:
+			"Welcome to my store! Here you can find all of my latest products, including templates, source code, and more. Check out the products below and start building personalized applications yourself!",
 	},
 
 	projects: [
@@ -58,7 +64,7 @@ const INFO = {
 				"I built this project using a front end template from another developer. It has been customized for my own purposes. This integrates the Stripe API for payment processing and will remain a work progress as I continue to add more features and functionality.",
 			logo: "https://cdn.jsdelivr.net/npm/programming-languages-logos/src/javascript/javascript.png",
 			linkText: "View Project",
-			link: "https://github.com/dcleavall/portfolio-react",
+			link: "https://github.com/dcleavall/portfolio",
 		},
 	],
 };
