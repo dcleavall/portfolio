@@ -22,7 +22,18 @@ const INFO = {
 	about: {
 		title: "Derrick Cleavall | Denver, CO",
 		description:
-			"I've practiced hydroponic cultiviating techniques for approximately 5 years now. The last two years have been a pivot into technology where I build and design web applications for clients. This has been an incredible journey that's enhanced my life in so many ways. Currently, I have two apps in production with other projects still in the development phase. If you are interested in my projects, please feel free to check out my Github profile where all my of code is open sourced. Collaborate with me by joining one of my discord channels for paired programming or just to chat about tech. I'm always open to new ideas and feedback.",
+			"I've been practicing hydroponic cultiviating techniques in the cannabis industry here in Colorado for approximately 5 years now. The last two years have been a pivot into technology where I build and design web applications for clients. This has been an incredible journey that's enhanced my life in so many ways. Currently, I have two apps in production with other projects still in the development phase. If you are interested in my projects, please feel free to check out my Github profile where all my of code is open sourced. Collaborate with me by joining one of my discord channels for paired programming or just to chat about tech. I'm always open to new ideas and feedback.",
+		skills: [
+			"JavaScript",
+			"Python",
+			"React.js",
+			"Flask",
+			"PostgresSql",
+			"SQLAlchemy",
+			"API Integration (Stripe, Google, OpenAI)",
+			"Deployment",
+			"Design Architecture",
+		],
 	},
 
 	articles: {
