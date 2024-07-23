@@ -2,15 +2,15 @@ import React from "react";
 
 function article_1() {
 	return {
-		date: "7 May 2023",
-		title: "The Benefits of Cloud Computing",
+		date: "15 July 2024",
+		title: "Integrate Google Drive API",
 		description:
-			"Cloud computing offers a range of benefits, including cost savings and increased flexibility. Find out why more businesses are turning to the cloud.",
+			"Learn how to integrate Google Drive API into your web applications to store and retrieve files. This article will guide you through the process of setting up the API, authenticating users, and managing files.",
 		keywords: [
-			"The Benefits of Cloud Computing",
-			"Tharindu",
-			"Tharindu N",
-			"Tharindu Nayanajith",
+			"Google Drive API",
+			"Derrick Cleavall",
+			"Derrick Cleavall Codes",
+			"Derrick Cleavall Full-stack Developer",
 		],
 		style: `
 				.article-content {
@@ -41,16 +41,16 @@ function article_1() {
 
 function article_2() {
 	return {
-		date: "7 May 2023",
-		title: "Artificial Intelligence in Healthcare",
+		date: "23 July 2024",
+		title: "Email Automation with Python",
 		description:
 			"AI is transforming the healthcare industry, from improving patient outcomes to streamlining operations. Discover the latest applications of this game-changing technology.",
 		style: ``,
 		keywords: [
-			"Artificial Intelligence in Healthcare",
-			"Tharindu",
-			"Tharindu N",
-			"Tharindu Nayanajith",
+			"Email Automation on Forms using Python, Flask, and smtplib",
+			"Derrick",
+			"Derrick C",
+			"Derrick Cleavall",
 		],
 		body: (
 			<React.Fragment>
