@@ -44,7 +44,7 @@ function article_2() {
 		date: "23 July 2024",
 		title: "Email Automation with Python",
 		description:
-			"AI is transforming the healthcare industry, from improving patient outcomes to streamlining operations. Discover the latest applications of this game-changing technology.",
+			"Learn how to automate email notifications on your web forms using Python, Flask, and smtplib. This article will guide you through the process of setting up a Flask application, creating a form, and sending email notifications using the smtplib library.",
 		style: ``,
 		keywords: [
 			"Email Automation on Forms using Python, Flask, and smtplib",
