@@ -24,13 +24,6 @@
 	margin-top: 120px;
 }
 
-
-/* .socials-container {
-	display: flex;
-	flex-direction: column;
-	margin-top: 80px;
-} */
-
 .contact-socials {
 	display: flex;
 	justify-content: flex-start;
@@ -58,6 +51,7 @@
 	background-color: #f9f9f9;
 	border: 1px solid #ccc;
 	border-radius: 8px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   }
   
   .contact-form .form-group {
@@ -82,7 +76,7 @@
   }
   
   .contact-form button {
-	background-color: #007bff;
+	background-color: orange;
 	color: white;
 	border: none;
 	padding: 10px 20px;
@@ -91,6 +85,6 @@
   }
   
   .contact-form button:hover {
-	background-color: #0056b3;
+	background-color: orange;
   }
 

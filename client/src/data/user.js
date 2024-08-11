@@ -16,7 +16,7 @@ const INFO = {
 	homepage: {
 		title: "Full-stack Developer and Cultivator.",
 		description:
-			"I specialize in front and backend development with expertise in React.js and Python on the Flask framework. I have experience in building scalable, secure and reliable web applications using various technologies and frameworks. I create customized solutions for clients through solving complex problems and actively learning new skills. I am passionate about results and creating high-quality code that follows best practices and industry standards.",
+			"I specialize in front and backend development with expertise in React.js and Python on the Flask framework. I have experience in building scalable, secure and reliable web applications using various technologies and frameworks. I create customized solutions for clients through solving complex problems and actively learning new skills. I am passionate about results and creating high-quality code that implements best practices and industry standards.",
 	},
 
 	about: {
@@ -61,7 +61,7 @@ const INFO = {
 		{
 			title: "Project 2",
 			description:
-				"I built this project using a front end template from another developer. It has been customized for my own purposes. This integrates the Stripe API for payment processing and will remain a work progress as I continue to add more features and functionality.",
+				"I built this project using a front end template from another developer. It has been customized for my own purposes. This integrates the Stripe API for payment processing and will remain a work-in-progress as I continue to add more features and functionality.",
 			logo: "https://cdn.jsdelivr.net/npm/programming-languages-logos/src/javascript/javascript.png",
 			linkText: "View Project",
 			link: "https://github.com/dcleavall/portfolio",

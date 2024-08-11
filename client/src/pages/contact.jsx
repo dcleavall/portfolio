@@ -39,7 +39,7 @@ const Contact = () => {
             <div className="title contact-title">Connect With Me</div>
 
             <div className="subtitle contact-subtitle">
-              Thank you for your interest in getting in touch with me. If you
+              Thank you for your interest in connecting with me. If you
               would like to collaborate or work together, please feel free to
               email me directly at{" "}
               <a href={`mailto:${INFO.main.email}`}>{INFO.main.email}</a>. I
@@ -52,6 +52,8 @@ const Contact = () => {
               interest, and I look forward to hearing from you!
             </div>
           </div>
+
+		  <br />
 
           <div className="socials-form-container">
             <div className="contact-socials">

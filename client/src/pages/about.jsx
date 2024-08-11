@@ -43,7 +43,7 @@ const About = () => {
                 <div className="subtitle about-subtitle">
                   {INFO.about.description}
                 </div>
-
+				<br/>
                 <div className="about-skills">
                   <h3>Skills:</h3>
                   <ul>
