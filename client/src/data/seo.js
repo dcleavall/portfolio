@@ -2,8 +2,8 @@ const SEO = [
 	{
 		page: "home",
 		description:
-			"I specialize in front and backend development with expertise in React.js and Python on the Flask framework. I have experience in building scalable, secure and reliable web applications using various technologies and frameworks. I create customized solutions for clients through solving complex problems and actively learning new skills. I am passionate about results and creating high-quality code that implements best practices and industry standards.",
-		keywords: ["Derrick", "Developer", "Cultivator"],
+			"I specialize in front and backend development with expertise in React.js and Python on the Flask framework. I have experience in building scalable, secure and reliable web applications using various technologies and frameworks. I create customized solutions for clients through solving complex problems and actively learning new skills. I am passionate about results and creating high-quality code that implements best practices and industry standards. I've developed a javascript seo strategy for marketing products and services on the React framework.",
+		keywords: ["Derrick", "Developer", "Cultivator, Strategy, React, Seo"],
 	},
 
 	{
