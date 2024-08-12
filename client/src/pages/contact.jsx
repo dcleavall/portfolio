@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async"; // Update import
 
 import NavBar from "../components/common/navBar";
@@ -12,7 +12,7 @@ import SEO from "../data/seo";
 import "./styles/contact.css";
 
 const Contact = () => {
-  const [contactData, setContactData] = useState([]);
+  
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -27,7 +27,6 @@ const Contact = () => {
         }
       })
       .then((data) => {
-        setContactData(data);
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -102,20 +101,6 @@ const Contact = () => {
               with any questions, feedback, or ideas. Thanks again for your
               interest, and I look forward to hearing from you!
             </div>
-
-            {/* Display fetched contact data */}
-            {contactData && contactData.length > 0 && (
-              <div className="contact-data">
-                <h2>Contact Information</h2>
-                <ul>
-                  {contactData.map((item, index) => (
-                    <li key={index}>
-                      <strong>{item.label}:</strong> {item.value}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
           </div>
 
           <br />
