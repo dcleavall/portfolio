@@ -1,13 +1,23 @@
-from flask import make_response, jsonify, request
+from flask import make_response, jsonify, request, send_from_directory
 from flask_restful import Resource
 from os import environ
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+
 # Internal Imports
 from config import db, app, api
 from models import Contact 
+
+# Serve the React app
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve_static(path):
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
 
 
 class ContactResource(Resource):
