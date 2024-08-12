@@ -74,6 +74,7 @@ class ContactResource(Resource):
             with smtplib.SMTP(smtp_server, smtp_port) as server:
                 server.starttls()
                 print('Logging in...')
+                print(f"EMAIL_SECRET: '{os.getenv('EMAIL_SECRET')}'")
                 server.login(smtp_user, smtp_password)
                 print('Sending message...')
                 server.send_message(msg)
