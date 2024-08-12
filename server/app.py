@@ -10,6 +10,9 @@ import os
 # Internal Imports
 from config import db, app, api
 from models import Contact 
+from dotenv import load_dotenv
+
+load_dotenv('.env')
 
 # Serve the React app
 @app.route('/', defaults={'path': ''})
