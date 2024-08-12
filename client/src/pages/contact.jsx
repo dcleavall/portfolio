@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Helmet } from "react-helmet";
+import React, { useEffect, useState } from "react";
+import { Helmet, HelmetProvider } from "react-helmet-async"; // Update import
 
 import NavBar from "../components/common/navBar";
 import Footer from "../components/common/footer";
@@ -12,14 +12,65 @@ import SEO from "../data/seo";
 import "./styles/contact.css";
 
 const Contact = () => {
+  const [contactData, setContactData] = useState([]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    // Fetch contact data if needed
+    fetch('/contact')
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Contact data retrieval failed');
+        }
+      })
+      .then((data) => {
+        setContactData(data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   }, []);
 
   const currentSEO = SEO.find((item) => item.page === "contact");
 
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent the default form submission
+
+    const formData = new FormData(event.target);
+    const data = {
+      full_name: formData.get('name'),
+      email: formData.get('email'),
+      message: formData.get('message'),
+    };
+
+    fetch('/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => {
+        if (response.ok) {
+          console.log('Form submitted successfully!');
+          // Optionally clear the form or show a success message
+          event.target.reset();
+        } else {
+          return response.text().then(errorMessage => {
+            throw new Error(errorMessage || 'Failed to submit form');
+          });
+        }
+      })
+      .catch(error => {
+        console.error('Error submitting form:', error.message);
+      });
+  };
+
   return (
-    <React.Fragment>
+    <HelmetProvider>
       <Helmet>
         <title>{`Contact | ${INFO.main.title}`}</title>
         <meta name="description" content={currentSEO.description} />
@@ -53,7 +104,7 @@ const Contact = () => {
             </div>
           </div>
 
-		  <br />
+          <br />
 
           <div className="socials-form-container">
             <div className="contact-socials">
@@ -61,7 +112,7 @@ const Contact = () => {
             </div>
 
             <div className="contact-form-container">
-              <form className="contact-form">
+              <form className="contact-form" onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label htmlFor="name">Name:</label>
                   <input type="text" id="name" name="name" required />
@@ -92,7 +143,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </HelmetProvider>
   );
 };
 

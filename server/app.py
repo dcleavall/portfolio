@@ -1,19 +1,16 @@
 from flask import make_response, jsonify, request
 from flask_restful import Resource
 from os import environ
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
-#Internal Imports
+# Internal Imports
 from config import db, app, api
 from models import Contact 
 
 
-# Define route handlers
-@app.route('/')
-def index():
-    return "Hello World!"
-
-
-class Contact(Resource):  
+class ContactResource(Resource):
     def get(self):
         contacts = Contact.query.all()
         contact_list = [contact.to_dict() for contact in contacts]
@@ -31,10 +28,49 @@ class Contact(Resource):
         contact = Contact(full_name=full_name, email=email, message=message)
         db.session.add(contact)
         db.session.commit()
+
+        # Send email notification
+        self.send_email(full_name, email, message)
+        
         return make_response(jsonify(contact.to_dict()), 201)
     
+    def send_email(self, full_name, email, message):
+        smtp_server = 'smtp.gmail.com'
+        smtp_port = 587
+        smtp_user = 'dcleavallcodes@gmail.com'
+        smtp_password = environ.get('EMAIL_SECRET')
+        to_email = 'dcleavallcodes@gmail.com'
 
-api.add_resource(Contact, '/contact')
+        msg = MIMEMultipart()
+        msg['From'] = smtp_user
+        msg['To'] = to_email
+        msg['Subject'] = 'New Contact Form Submission'
+
+        body = f"""
+        You have a new contact form submission:
+
+        Full Name: {full_name}
+        Email: {email}
+        Message: {message}
+        """
+        msg.attach(MIMEText(body, 'plain'))
+
+        try:
+            print(f'Connecting to {smtp_server} on port {smtp_port}...')
+            with smtplib.SMTP(smtp_server, smtp_port) as server:
+                server.starttls()
+                print('Logging in...')
+                server.login(smtp_user, smtp_password)
+                print('Sending message...')
+                server.send_message(msg)
+            print('Email sent successfully!')
+        except smtplib.SMTPAuthenticationError:
+            print('SMTP Authentication Error: Check your email and password.')
+        except Exception as e:
+            print(f'Failed to send email: {e}')
+
+
+api.add_resource(ContactResource, '/contact')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5555, debug=True)

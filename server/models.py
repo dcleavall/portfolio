@@ -1,10 +1,10 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String, DateTime
 from datetime import datetime
+from config import db
+from sqlalchemy_serializer import SerializerMixin
 
-db = SQLAlchemy()
-
-class Contact(db.Model):
+class Contact(db.Model, SerializerMixin):
     __tablename__ = 'contacts'
 
     id = Column(Integer, primary_key=True)

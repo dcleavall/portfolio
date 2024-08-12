@@ -8,6 +8,7 @@ from flask_bcrypt import Bcrypt
 from sqlalchemy.orm import Session
 from os import environ
 from dotenv import load_dotenv
+from flask_cors import CORS
 
 load_dotenv('.env')
 # Instantiate app, set attributes
@@ -31,3 +32,5 @@ bcrypt = Bcrypt(app)
 
 # Instantiate REST API
 api = Api(app)
+
+CORS(app)
