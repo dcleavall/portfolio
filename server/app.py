@@ -4,6 +4,7 @@ from os import environ
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import os
 
 
 # Internal Imports
@@ -48,7 +49,7 @@ class ContactResource(Resource):
         smtp_server = 'smtp.gmail.com'
         smtp_port = 587
         smtp_user = 'dcleavallcodes@gmail.com'
-        smtp_password = 'swyj gbbe nfvr bbyt'
+        smtp_password = environ.get('EMAIL_SECRET')
         to_email = 'dcleavallcodes@gmail.com'
 
         msg = MIMEMultipart()
