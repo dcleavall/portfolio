@@ -2,21 +2,21 @@ const SEO = [
 	{
 		page: "home",
 		description:
-			"I am a backend developer with expertise in Node.js. I have experience in building scalable, secure and reliable web applications using various frameworks and technologies.",
+			"I specialize in front and backend development with expertise in React.js and Python on the Flask framework. I have experience in building scalable, secure and reliable web applications using various technologies and frameworks. I create customized solutions for clients through solving complex problems and actively learning new skills. I am passionate about results and creating high-quality code that implements best practices and industry standards.",
 		keywords: ["Derrick", "Developer", "Cultivator"],
 	},
 
 	{
 		page: "about",
 		description:
-			"I am a backend developer with expertise in Node.js. I have experience in building scalable, secure and reliable web applications using various frameworks and technologies.",
+			"I've been practicing hydroponic cultiviating techniques in the cannabis industry here in Colorado for approximately 5 years now. The last two years have been a pivot into technology where I build and design web applications for clients. This has been an incredible journey that's enhanced my life in so many ways. Currently, I have two apps in production with other projects still in the development phase. If you are interested in my projects, please feel free to check out my Github profile where all my of code is open sourced. Collaborate with me by joining one of my discord channels for paired programming or just to chat about tech. I'm always open to new ideas and feedback.",
 		keywords: ["Derrick", "Developer", "Cultivator"],
 	},
 
 	{
 		page: "articles",
 		description:
-			"Chronological collection of my long-form thoughts on programming, leadership, product design, and more.",
+			"I'm actively programming and documenting my journey.",
 		keywords: ["Derrick", "Developer", "Cultivator"],
 	},
 
@@ -31,6 +31,12 @@ const SEO = [
 		page: "contact",
 		description:
 			"If you're interested in collaborating on a project, feel free to reach out to me. I'm always open to new ideas and opportunities.",
+		keywords: ["Derrick", "Developer", "Cultivator"],
+	},
+	{
+		page: "store",
+		description:
+			"Welcome to my store! Here you can find all of my latest products, including templates, source code, and more. Check out the products below and start building personalized applications yourself! *Note: This page is still under construction and will demonstrate Stripe API integration for payment processing.",
 		keywords: ["Derrick", "Developer", "Cultivator"],
 	},
 ];
