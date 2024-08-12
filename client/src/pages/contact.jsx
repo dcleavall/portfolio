@@ -102,6 +102,20 @@ const Contact = () => {
               with any questions, feedback, or ideas. Thanks again for your
               interest, and I look forward to hearing from you!
             </div>
+
+            {/* Display fetched contact data */}
+            {contactData && contactData.length > 0 && (
+              <div className="contact-data">
+                <h2>Contact Information</h2>
+                <ul>
+                  {contactData.map((item, index) => (
+                    <li key={index}>
+                      <strong>{item.label}:</strong> {item.value}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
 
           <br />
