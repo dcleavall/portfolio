@@ -48,7 +48,7 @@ class ContactResource(Resource):
         smtp_server = 'smtp.gmail.com'
         smtp_port = 587
         smtp_user = 'dcleavallcodes@gmail.com'
-        smtp_password = environ.get('EMAIL_SECRET')
+        smtp_password = 'swyj gbbe nfvr bbyt'
         to_email = 'dcleavallcodes@gmail.com'
 
         msg = MIMEMultipart()
