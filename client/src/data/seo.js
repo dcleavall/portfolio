@@ -36,7 +36,7 @@ const SEO = [
 	{
 		page: "store",
 		description:
-			"Welcome to my store! Here you can find all of my latest products, including templates, source code, and more. Check out the products below and start building personalized applications yourself! *Note: This page is still under construction and will demonstrate Stripe API integration for payment processing.",
+			"Welcome to my store! Here you can find all of my latest products, including templates, source code, and more. Check out the products below and start building personalized applications yourself! *Note: This page is still under construction and will demonstrate Stripe API integration for payment processing. Thanks for shopping!",
 		keywords: ["Derrick", "Developer", "Cultivator"],
 	},
 ];
