@@ -18,10 +18,16 @@ load_dotenv('.env')
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve_static(path):
-    # Serve static files directly
+    # Log the requested path for debugging
+    print(f"Requested path: {path}")
+    
+    # Serve the static files if they exist
     if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        print(f"Serving static file: {path}")
         return send_from_directory(app.static_folder, path)
-    # Fallback to index.html for all other routes
+    
+    # Serve index.html for all other routes
+    print("Serving index.html")
     return send_from_directory(app.static_folder, 'index.html')
 
 
