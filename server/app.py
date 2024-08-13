@@ -18,10 +18,11 @@ load_dotenv('.env')
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve_static(path):
+    # Serve static files directly
     if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
         return send_from_directory(app.static_folder, path)
-    else:
-        return send_from_directory(app.static_folder, 'index.html')
+    # Fallback to index.html for all other routes
+    return send_from_directory(app.static_folder, 'index.html')
 
 
 class ContactResource(Resource):
