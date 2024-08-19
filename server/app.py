@@ -8,9 +8,13 @@ import os
 
 
 # Internal Imports
-from config import db, app, api
+from config import db, app, api, stripe
 from models import Contact 
 from dotenv import load_dotenv
+
+
+# Initialize Stripe with your secret key
+stripe.api_key = environ.get('STRIPE_KEY')
 
 load_dotenv('.env')
 
@@ -90,7 +94,55 @@ class ContactResource(Resource):
         except Exception as e:
             print(f'Failed to send email: {e}')
 
+class PaymentIntentResource(Resource):
+    def post(self):
+        try:
+            data = request.get_json()
+            amount = data.get('amount')
 
+            if amount is None or amount < 50:
+                return make_response(jsonify(message="Amount must be at least $0.50 USD"), 400)
+
+            # Create a PaymentIntent
+            payment_intent = stripe.PaymentIntent.create(
+                amount=amount,  # Amount in cents
+                currency='usd',
+                payment_method_types=['card'],
+            )
+
+            return jsonify({
+                'clientSecret': payment_intent.client_secret
+            })
+        except Exception as e:
+            print(f'Failed to create PaymentIntent: {e}')
+            return make_response(jsonify(error=str(e)), 500)
+
+
+
+
+# Stripe Webhook Endpoint
+@app.route('/webhook', methods=['POST'])
+def stripe_webhook():
+    payload = request.get_data(as_text=True)
+    sig_header = request.headers.get('Stripe-Signature')
+    endpoint_secret = environ.get('STRIPE_ENDPOINT_SECRET')
+
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, endpoint_secret
+        )
+    except ValueError:
+        return jsonify({'error': 'Invalid payload'}), 400
+    except stripe.error.SignatureVerificationError:
+        return jsonify({'error': 'Invalid signature'}), 400
+
+    if event['type'] == 'payment_intent.succeeded':
+        payment_intent = event['data']['object']
+        print(f'PaymentIntent was successful!')
+
+    return jsonify({'status': 'success'})
+
+api.add_resource(PaymentIntentResource, '/create-payment-intent')
 api.add_resource(ContactResource, '/contact')
 
 if __name__ == '__main__':

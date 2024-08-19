@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import "./styles/navBar.css";
+import CartModal from '../store/CartModal'; 
+
 
 const NavBar = (props) => {
 	const { active } = props;
@@ -65,6 +67,9 @@ const NavBar = (props) => {
 								}
 							>
 								<Link to="/store">Store</Link>
+							</li>
+							<li>
+								<CartModal />
 							</li>
 						</ul>
 					</div>

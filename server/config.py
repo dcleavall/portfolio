@@ -9,9 +9,13 @@ from sqlalchemy.orm import Session
 from os import environ
 from dotenv import load_dotenv
 from flask_cors import CORS
+import stripe
+
+# Initialize Stripe
+stripe.api_key = environ.get('STRIPE_KEY')
 
 load_dotenv('.env')
-# Instantiate app, set attributes
+# Instantiate app, set attributesa
 app = Flask(__name__, static_folder='../client/build', static_url_path='/')
 app.secret_key = environ.get("APP_SECRET")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
