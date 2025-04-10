@@ -32,8 +32,15 @@ def serve_index(path):
     print(f"Requested path: {path}")
 
 
-    
+
     return send_from_directory(app.template_folder, 'index.html')
+
+@app.route('/manifest.json')
+def serve_manifest():
+    return send_from_directory('../client/build', 'manifest.json')
+@app.route('/favicon.ico')
+def serve_favicon():
+    return send_from_directory('../client/build', 'favicon.ico')
 
 
 
