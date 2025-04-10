@@ -28,43 +28,43 @@ def serve_static(path):
 @app.route('/<path:path>')
 def serve_index(path):
     print(f"Requested path: {path}")
-    return send_from_directory(app.template_folder, 'index.html')
+    return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/favicon.ico')
 def favicon():
-    return send_from_directory(app.template_folder, 'favicon.ico')
+    return send_from_directory(app.static_folder, 'favicon.ico')
 
 @app.route('/manifest.json')
 def manifest():
-    return send_from_directory(app.template_folder, 'manifest.json')
+    return send_from_directory(app.static_folder, 'manifest.json')
 
 @app.route('/logo192.png')
 def logo192():
-    return send_from_directory(app.template_folder, 'logo192.png')
+    return send_from_directory(app.static_folder, 'logo192.png')
 
 @app.route('/logo512.png')
 def logo512():
-    return send_from_directory(app.template_folder, 'logo512.png')
+    return send_from_directory(app.static_folder, 'logo512.png')
 
 @app.route('/about.jpg')
 def about():
-    return send_from_directory(app.template_folder, 'about.jpg')
+    return send_from_directory(app.static_folder, 'about.jpg')
 
 @app.route('/freelance.png')
 def freelance():
-    return send_from_directory(app.template_folder, 'freelance.png')
+    return send_from_directory(app.static_folder, 'freelance.png')
 
 @app.route('homepage.jpg')
 def homepage():
-    return send_from_directory(app.template_folder, 'homepage.jpg')
+    return send_from_directory(app.static_folder, 'homepage.jpg')
 
 @app.route('/plants.png')
 def plants():
-    return send_from_directory(app.template_folder, 'plants.png')
+    return send_from_directory(app.static_folder, 'plants.png')
 
 @app.route('/favicon.ico')
 def favicon():
-    return send_from_directory(app.template_folder, 'favicon.ico')  
+    return send_from_directory(app.static_folder, 'favicon.ico')  
 
 class ContactResource(Resource):
     def get(self):
