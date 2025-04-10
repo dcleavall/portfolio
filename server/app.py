@@ -62,9 +62,7 @@ def homepage():
 def plants():
     return send_from_directory(app.static_folder, 'plants.png')
 
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(app.static_folder, 'favicon.ico')  
+ 
 
 class ContactResource(Resource):
     def get(self):
