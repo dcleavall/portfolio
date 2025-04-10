@@ -18,11 +18,12 @@ stripe.api_key = environ.get('STRIPE_KEY')
 
 load_dotenv('.env')
 
-# Route for serving static files (JS, CSS, etc.)
-@app.route('/static/<path:path>')
-def serve_static(path):
+# Route to serve static files from the public directory
+@app.route('/<path:filename>')
+def serve_static(filename):
+    return send_from_directory(os.path.join(app.template_folder, 'public'), filename)
 
-    return send_from_directory(os.path.join(app.static_folder, 'static'), path)
+
 
 # Catch-all route to serve index.html for all routes not handled by the backend
 @app.route('/', defaults={'path': ''})
