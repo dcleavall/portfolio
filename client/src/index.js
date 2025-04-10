@@ -14,13 +14,13 @@ const stripePromise = loadStripe('pk_live_51PoexQ00NGtbi6SbzD4GbZAtWOLlMWrQdmPbc
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-	<CartProvider>
-		<BrowserRouter>
-		<Elements stripe={stripePromise}>
-			<App />
-		</Elements>
-		</BrowserRouter>
-	</CartProvider>
+    <CartProvider>
+      <BrowserRouter>
+        <Elements stripe={stripePromise}>
+          <App />
+        </Elements>
+      </BrowserRouter>
+    </CartProvider>
   </React.StrictMode>
 );
 
