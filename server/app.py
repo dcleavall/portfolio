@@ -39,7 +39,7 @@ class ContactResource(Resource):
     def get(self):
         contacts = Contact.query.all()
         contact_list = [contact.to_dict() for contact in contacts]
-        return jsonify(contact_list)
+        return jsonify(contact_list) 
 
     def post(self):
         data = request.get_json()

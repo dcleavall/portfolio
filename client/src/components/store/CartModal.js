@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { CartContext } from './CartContext';
 import { getProductData } from '../../data/products';
 import './CartModal.css';
+import PaymentForm from './PaymentForm';
 
 const CartModal = () => {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -10,6 +11,30 @@ const CartModal = () => {
     const toggleModal = () => {
         setIsOpen(!isOpen);
     };
+
+    // Calculate total quantities of each item type
+    const getItemQuantities = () => {
+        const quantities = { tshirt: 0, hoodie: 0 };
+        items.forEach(item => {
+            const product = getProductData(item.id);
+            if (product) {
+                if (product.type === 'tshirt') {
+                    quantities.tshirt += item.quantity;
+                } else if (product.type === 'hoodie') {
+                    quantities.hoodie += item.quantity;
+                }
+            }
+        });
+        return quantities;
+    };
+
+    const { tshirt, hoodie } = getItemQuantities();
+
+    useEffect(() => {
+        console.log('Items in Cart:', items);
+        console.log('T-shirt Quantity:', tshirt);
+        console.log('Hoodie Quantity:', hoodie);
+    }, [items, tshirt, hoodie]);
 
     return (
         <div className="cart-modal-container">
@@ -42,6 +67,10 @@ const CartModal = () => {
                         )}
                         <div className="cart-total">
                             <h3>Total: ${getTotalCost().toFixed(2)}</h3>
+                            <PaymentForm
+                                tshirtQuantity={tshirt}
+                                hoodieQuantity={hoodie}
+                            />
                         </div>
                     </div>
                 </div>

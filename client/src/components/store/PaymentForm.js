@@ -2,17 +2,15 @@ import React, { useState } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
 
-const PaymentForm = () => {
+const PaymentForm = ({ tshirtQuantity, hoodieQuantity }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState(false);
-  const [tshirtQuantity, setTshirtQuantity] = useState(0);
-  const [hoodieQuantity, setHoodieQuantity] = useState(0);
 
   // Prices in cents
-  const tshirtPrice = 10;  // $0.10 USD
-  const hoodiePrice = 5;   // $0.05 USD
+  const tshirtPrice = 50;  // $0.50 USD
+  const hoodiePrice = 50;   // $0.50 USD
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -25,6 +23,8 @@ const PaymentForm = () => {
 
     // Calculate total amount
     const totalAmount = (tshirtQuantity * tshirtPrice) + (hoodieQuantity * hoodiePrice);
+
+    console.log('Total Amount in PaymentForm:', totalAmount); // Debugging line
 
     // Ensure the total amount meets the minimum required by Stripe
     if (totalAmount < 50) {
@@ -61,24 +61,7 @@ const PaymentForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label>T-shirts:</label>
-        <input
-          type="number"
-          min="0"
-          value={tshirtQuantity}
-          onChange={(e) => setTshirtQuantity(parseInt(e.target.value, 10))}
-        />
-      </div>
-      <div>
-        <label>Hoodies:</label>
-        <input
-          type="number"
-          min="0"
-          value={hoodieQuantity}
-          onChange={(e) => setHoodieQuantity(parseInt(e.target.value, 10))}
-        />
-      </div>
+      <div className="payment-form-header">Payment Information</div>
       <CardElement />
       <button type="submit" disabled={!stripe || processing}>
         {processing ? 'Processing...' : 'Pay'}
