@@ -18,18 +18,15 @@ stripe.api_key = environ.get('STRIPE_KEY')
 
 load_dotenv('.env')
 
-# Serve static files and React build
-@app.route('/<path:path>', methods=['GET'])
-def static_proxy(path):
-    file_path = os.path.join(app.static_folder, path)
-    if os.path.exists(file_path):
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve_react_app(path):
+    try:
+        # Try serving the requested file if it exists
         return send_from_directory(app.static_folder, path)
-    else:
+    except NotFound:
+        # If not found, serve index.html (let React Router handle it)
         return send_from_directory(app.static_folder, 'index.html')
-
-@app.route('/', methods=['GET'])
-def root():
-    return send_from_directory(app.static_folder, 'index.html')
 
 
 class ContactResource(Resource):
