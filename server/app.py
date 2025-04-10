@@ -18,21 +18,18 @@ stripe.api_key = environ.get('STRIPE_KEY')
 
 load_dotenv('.env')
 
-# Route for serving static files (JS, CSS, images, etc.)
+# Route for serving static files (JS, CSS, etc.)
 @app.route('/static/<path:path>')
 def serve_static(path):
-    # Serve the static file from React's build/static folder
     return send_from_directory(os.path.join(app.static_folder, 'static'), path)
 
-# Catch-all route to serve index.html for all routes not handled by the backend
+# Catch-all route to serve index.html for frontend routes (React Router handles this)
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve_index(path):
-    # Log the requested path for debugging (helpful during development)
     print(f"Requested path: {path}")
-    
-    # Serve index.html for frontend routes (React Router handles this)
     return send_from_directory(app.template_folder, 'index.html')
+
 
 
 
