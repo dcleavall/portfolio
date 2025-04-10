@@ -34,13 +34,15 @@ def serve_static(path):
     print("Serving index.html")
     return send_from_directory(app.static_folder, 'index.html')
 
-@app.route('/<path:path>')
+
 def catch_all(path):
     # Log to see which path was requested
     print(f"Requested path not found: {path}")
     
     # Serve index.html for unknown routes (for client-side routing)
     return send_from_directory(app.static_folder, 'index.html')
+
+
 
 
 
