@@ -16,7 +16,7 @@ stripe.api_key = environ.get('STRIPE_KEY')
 
 load_dotenv('.env')
 # Instantiate app, set attributesa
-app = Flask(__name__, static_folder='../client/build/static', template_folder='../client/build')
+app = Flask(__name__, static_folder='../client/build', static_url_path='/')
 app.secret_key = environ.get("APP_SECRET")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
