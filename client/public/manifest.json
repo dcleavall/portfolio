@@ -16,6 +16,26 @@
       "src": "logo512.png",
       "type": "image/png",
       "sizes": "512x512"
+    },
+    {
+      "src": "about.jpg.jpg",
+      "type": "image/jpg",
+      "sizes": "512x512"
+    },
+    {
+      "src": "homepage.jpg",
+      "type": "image/jpg",
+      "sizes": "192x192"
+    },
+    {
+      "src": "freelance.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "plant.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "start_url": ".",
