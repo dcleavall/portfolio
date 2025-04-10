@@ -54,7 +54,7 @@ def about():
 def freelance():
     return send_from_directory(app.static_folder, 'freelance.png')
 
-@app.route('homepage.jpg')
+@app.route('/homepage.jpg')
 def homepage():
     return send_from_directory(app.static_folder, 'homepage.jpg')
 
