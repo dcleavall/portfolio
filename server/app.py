@@ -5,6 +5,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import os
+from werkzeug.exceptions import NotFound
 
 
 # Internal Imports
@@ -22,7 +23,7 @@ load_dotenv('.env')
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve_react_app(path):
-    
+
     try:
         # Try serving the requested file if it exists
         return send_from_directory(app.static_folder, path)
