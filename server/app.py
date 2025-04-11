@@ -18,23 +18,16 @@ stripe.api_key = environ.get('STRIPE_KEY')
 
 load_dotenv('.env')
 
-
-# Use an absolute path to the React build folder
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-REACT_BUILD_DIR = os.path.join(ROOT_DIR, '..', 'client', 'build')
-
+# Serve React App--> static files
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve_react_app(path):
-    """
-    Serve static assets if they exist, otherwise return index.html 
-    so React Router can handle the route.
-    """
+    
     try:
-        # Serve file if it exists
+        # Try serving the requested file if it exists
         return send_from_directory(app.static_folder, path)
     except NotFound:
-        # Otherwise, serve React index.html for client-side routing
+        # If not found, serve index.html (let React Router handle it)
         return send_from_directory(app.static_folder, 'index.html')
 
 
