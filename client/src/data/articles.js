@@ -8,9 +8,12 @@ function article_1() {
 			"Learn how to integrate Google Drive API into your web applications to store and retrieve files. This article will guide you through the process of setting up the API, authenticating users, and managing files.",
 		keywords: [
 			"Google Drive API",
-			"Derrick Cleavall",
-			"Derrick Cleavall Codes",
-			"Derrick Cleavall Full-stack Developer",
+			"Backend Development",
+			"Cloud",
+			"Python",
+			"Flask",
+			"Javascript",
+			"Developer",
 		],
 		style: `
 				.article-content {
@@ -47,10 +50,10 @@ function article_2() {
 			"Learn how to automate email notifications on your web forms using Python, Flask, and smtplib. This article will guide you through the process of setting up a Flask application, creating a form, and sending email notifications using the smtplib library.",
 		style: ``,
 		keywords: [
-			"Email Automation on Forms using Python, Flask, and smtplib",
-			"Derrick",
-			"Derrick C",
-			"Derrick Cleavall",
+			"Automation",
+			"Python",
+			"Flask",
+			"Backend Developer",
 		],
 		body: (
 			<React.Fragment>
