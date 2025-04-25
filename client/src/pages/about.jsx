@@ -61,6 +61,7 @@ const About = () => {
                       src="about.jpg"
                       alt="about"
                       className="about-image"
+                      loading="lazy"
                     />
                   </div>
                 </div>

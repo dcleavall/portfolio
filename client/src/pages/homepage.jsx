@@ -103,11 +103,12 @@ const Homepage = () => {
 							<div className="homepage-first-area-right-side">
 								<div className="homepage-image-container">
 									<div className="homepage-image-wrapper">
-									<picture>
-										<source srcSet="/homepage.webp" type="image/webp" />
-										<img src="/homepage.jpg" alt="Homepage preview" className="homepage-image" />
-										</picture>
-
+										<img
+											src="homepage.jpg"
+											alt="about"
+											className="homepage-image"
+											loading="lazy"
+										/>
 									</div>
 								</div>
 							</div>
