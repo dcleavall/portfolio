@@ -1,6 +1,6 @@
 const INFO = {
 	main: {
-		title: "Portfolio by TheCodingChicken",
+		title: "Portfolio by Derrick Cleavall | Albuquerque, NM",
 		name: "Derrick Cleavall",
 		email: "dcleavallcodes@gmail.com",
 		logo: "../logo.png",
