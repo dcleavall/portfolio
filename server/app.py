@@ -1,4 +1,4 @@
-from flask import make_response, jsonify, request, send_from_directory
+from flask import make_response, jsonify, request, send_from_directory, send_file
 from flask_restful import Resource
 from os import environ
 import smtplib
@@ -22,14 +22,14 @@ load_dotenv('.env')
 # Serve React App--> static files
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
-def serve_react_app(path):
-
-    try:
-        # Try serving the requested file if it exists
+def serve(path):
+    # Full path to file in the React build
+    file_path = os.path.join(app.static_folder, path)
+    
+    if os.path.exists(file_path):
         return send_from_directory(app.static_folder, path)
-    except NotFound:
-        # If not found, serve index.html (let React Router handle it)
-        return send_from_directory(app.static_folder, 'index.html')
+    else:
+        return send_file(os.path.join(app.static_folder, 'index.html'))
 
 
 class ContactResource(Resource):
