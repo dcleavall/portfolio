@@ -16,7 +16,7 @@ import "./App.css";
 
 function App() {
 	useEffect(() => {
-		if (TRACKING_ID !== "") {
+		if (TRACKING_ID !== "353317143") {
 			ReactGA.initialize(TRACKING_ID);
 		}
 	}, []);

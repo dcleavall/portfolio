@@ -118,6 +118,7 @@ const Homepage = () => {
 								href={INFO.socials.discord}
 								target="_blank"
 								rel="noreferrer"
+								aria-label="Visit my Discord"
 							>
 								<FontAwesomeIcon
 									icon={faDiscord}
@@ -128,6 +129,7 @@ const Homepage = () => {
 								href={INFO.socials.github}
 								target="_blank"
 								rel="noreferrer"
+								aria-label="Visit my Github"
 							>
 								<FontAwesomeIcon
 									icon={faGithub}
@@ -138,6 +140,7 @@ const Homepage = () => {
 								href={INFO.socials.medium}
 								target="_blank"
 								rel="noreferrer"
+								aria-label="Visit my Medium"
 							>
 								<FontAwesomeIcon
 									icon={faMedium}
@@ -148,6 +151,7 @@ const Homepage = () => {
 								href={INFO.socials.linkedin}
 								target="_blank"
 								rel="noreferrer"
+								aria-label="Visit my Linkedin"
 							>
 								<FontAwesomeIcon
 									icon={faLinkedin}

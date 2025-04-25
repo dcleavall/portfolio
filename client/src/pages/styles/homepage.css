@@ -51,19 +51,20 @@
 	width: 100%;
 }
 
-.homepage-socials {
-	display: flex;
-	justify-content: left;
+.homepage-socials a {
+	display: inline-flex;
 	align-items: center;
-	padding-top: 30px;
-}
+	justify-content: center;
+	min-width: 48px;
+	min-height: 48px;
+	margin-right: 12px;
+  }
 
-.homepage-social-icon {
-	padding-right: 20px;
+  .homepage-social-icon {
 	font-size: 25px;
 	transition: color 0.2s ease-in-out;
 	color: var(--secondary-color);
-}
+  }
 
 .homepage-social-icon:hover {
 	color: var(--primary-color);
