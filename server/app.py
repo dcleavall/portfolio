@@ -171,6 +171,7 @@ def callback():
     session['access_token'] = token_data["access_token"]
     return redirect('/whoop-data')
 
+
 @app.route('/whoop-data')
 def whoop_data():
     access_token = session.get('access_token')
