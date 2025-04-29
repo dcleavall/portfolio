@@ -14,7 +14,6 @@ const Store = () => {
   const [whoopData, setWhoopData] = useState([]);
   const [loadingWhoop, setLoadingWhoop] = useState(true);
   const [errorWhoop, setErrorWhoop] = useState(null);
-  const [unauthorized, setUnauthorized] = useState(false); // For 401 handling
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -22,8 +21,9 @@ const Store = () => {
     fetch('/whoop-data')
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
-          setUnauthorized(true);
-          throw new Error("Unauthorized. Please connect WHOOP.");
+          // Redirect immediately to login if not authorized
+          window.location.href = "/login";
+          throw new Error("Unauthorized. Redirecting to WHOOP login.");
         }
         if (!res.ok) {
           throw new Error('Failed to fetch Whoop data');
@@ -100,10 +100,6 @@ const Store = () => {
 
               {loadingWhoop ? (
                 <p>Loading fitness data...</p>
-              ) : unauthorized ? (
-                <p>
-                  Please <a href="/login">connect your WHOOP account</a> to view fitness data.
-                </p>
               ) : errorWhoop ? (
                 <p>{`Error: ${errorWhoop}`}</p>
               ) : whoopData.length === 0 ? (
