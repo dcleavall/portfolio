@@ -1,4 +1,4 @@
-from flask import make_response, jsonify, request, send_from_directory
+from flask import make_response, jsonify, request, send_from_directory, redirect, session
 from flask_restful import Resource
 from os import environ
 import smtplib
@@ -137,45 +137,55 @@ def stripe_webhook():
     return jsonify({'status': 'success'})
 
 
-@app.route('/whoop-data', methods=['GET'])
-def get_whoop_data():
-    whoop_username = os.environ.get("WHOOP_USERNAME")
-    whoop_password = os.environ.get("WHOOP_PASSWORD")
+client_id = os.getenv("WHOOP_CLIENT_ID")
+client_secret = os.getenv("WHOOP_CLIENT_SECRET")
+redirect_uri = os.getenv("REDIRECT_URI")
 
-    # --- Step 1: Authenticate with Whoop ---
-    auth_url = "https://app.whoop.com/api/v3/auth/login"
-    auth_headers = {"Content-Type": "application/json"}
-    auth_payload = {"username": whoop_username, "password": whoop_password}
+@app.route('/login')
+def login():
+    auth_url = (
+        f"https://api.whoop.com/oauth/oauth2/auth?client_id={client_id}"
+        f"&redirect_uri={redirect_uri}&response_type=code"
+    )
+    return redirect(auth_url)
 
-    try:
-        auth_response = requests.post(auth_url, headers=auth_headers, data=json.dumps(auth_payload))
-        auth_response.raise_for_status()  # Raise an error for bad responses
+@app.route('/callback')
+def callback():
+    code = request.args.get('code')
+    if not code:
+        return jsonify({"error": "Missing code"}), 400
 
-        access_token = auth_response.json().get("access_token")
-        if not access_token:
-            return make_response(jsonify(error="No access token received from Whoop"), 401)
+    token_url = "https://api.whoop.com/oauth/oauth2/token"
+    data = {
+        "client_id": client_id,
+        "client_secret": client_secret,
+        "grant_type": "authorization_code",
+        "redirect_uri": redirect_uri,
+        "code": code
+    }
 
-        # --- Step 2: Fetch Workout Data ---
-        workouts_url = "https://api.whoop.com/v1/workouts"
-        workout_headers = {"Authorization": f"Bearer {access_token}"}
-        workout_response = requests.get(workouts_url, headers=workout_headers)
+    response = requests.post(token_url, data=data)
+    token_data = response.json()
 
-        workout_response.raise_for_status()  # Raise an error for bad responses
+    if "access_token" not in token_data:
+        return jsonify({"error": "Failed to get access token"}), 400
 
-        workouts_data = workout_response.json()
+    session['access_token'] = token_data["access_token"]
+    return redirect('/whoop-data')
 
-        # Transform the response data if necessary
-        workouts_list = [{
-            "id": workout.get("id"),
-            "created_at": workout.get("created_at"),
-            "sport_name": workout.get("sport_name"),
-            "duration": workout.get("duration")  # Duration in seconds
-        } for workout in workouts_data]
+@app.route('/whoop-data')
+def whoop_data():
+    access_token = session.get('access_token')
+    if not access_token:
+        return redirect('/login')
 
-        return jsonify(workouts_list)
+    headers = {"Authorization": f"Bearer {access_token}"}
+    response = requests.get("https://api.whoop.com/v1/workouts", headers=headers)
 
-    except requests.exceptions.RequestException as e:
-        return make_response(jsonify(error=f"Request failed: {str(e)}"), 500)
+    if response.status_code != 200:
+        return jsonify({"error": "Failed to fetch workouts"}), 500
+
+    return jsonify(response.json())
 
 
 api.add_resource(PaymentIntentResource, '/create-payment-intent')

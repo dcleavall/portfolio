@@ -5,21 +5,26 @@ import Footer from '../components/common/footer';
 import Logo from '../components/common/logo';
 import INFO from '../data/user';
 import SEO from '../data/seo';
-import ProductCard from '../components/store/ProductCard'; // Import ProductCard
-import {products} from '../data/products'; 
+import ProductCard from '../components/store/ProductCard';
+import { products } from '../data/products';
 
 import './styles/store.css';
 
 const Store = () => {
   const [whoopData, setWhoopData] = useState([]);
   const [loadingWhoop, setLoadingWhoop] = useState(true);
-  const [errorWhoop, setErrorWhoop] = useState(null);  // Error state for Whoop data
+  const [errorWhoop, setErrorWhoop] = useState(null);
+  const [unauthorized, setUnauthorized] = useState(false); // For 401 handling
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
     fetch('/whoop-data')
       .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          setUnauthorized(true);
+          throw new Error("Unauthorized. Please connect WHOOP.");
+        }
         if (!res.ok) {
           throw new Error('Failed to fetch Whoop data');
         }
@@ -30,7 +35,7 @@ const Store = () => {
         setLoadingWhoop(false);
       })
       .catch((err) => {
-        console.error('Failed to fetch Whoop data:', err);
+        console.error('Whoop data error:', err.message);
         setErrorWhoop(err.message);
         setLoadingWhoop(false);
       });
@@ -43,10 +48,7 @@ const Store = () => {
       <Helmet>
         <title>{`Store | ${INFO.main.title}`}</title>
         <meta name="description" content={currentSEO.description} />
-        <meta
-          name="keywords"
-          content={currentSEO.keywords.join(", ")}
-        />
+        <meta name="keywords" content={currentSEO.keywords.join(", ")} />
       </Helmet>
 
       <div className="page-content">
@@ -61,19 +63,14 @@ const Store = () => {
           <div className="store-container">
             <div className="store-main">
               <div className="store-right-side">
-                <div className="store-title">
-                  {INFO.store.title}
-                </div>
+                <div className="store-title">{INFO.store.title}</div>
+                <div className="store-subtitle">{INFO.store.description}</div>
 
-                <div className="store-subtitle">
-                  {INFO.store.description}
-                </div>
-				{/* Product Cards */}
                 <div className="products-section">
                   {products.map((product) => (
                     <ProductCard
-                      key={product.id} // Use a unique key
-                      id={product.id} // Pass the id prop
+                      key={product.id}
+                      id={product.id}
                       name={product.name}
                       price={product.price}
                       description={product.description}
@@ -96,25 +93,32 @@ const Store = () => {
               </div>
             </div>
           </div>
+
           <div className="page-footer">
-          <div className="whoop-section">
-            <h2>Fitness Activity (Whoop)</h2>
-            {loadingWhoop ? (
-              <p>Loading fitness data...</p>
-            ) : errorWhoop ? (
-              <p>{`Error: ${errorWhoop}`}</p>
-            ) : whoopData.length === 0 ? (
-              <p>No recent workouts found.</p>
-            ) : (
-              <ul className="whoop-workout-list">
-                {whoopData.map((workout) => (
-                  <li key={workout.id} className="whoop-workout-item">
-                    <strong>{new Date(workout.created_at).toLocaleDateString()}</strong>: {workout.sport_name} for {Math.round(workout.duration / 60)} minutes
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+            <div className="whoop-section">
+              <h2>Fitness Activity (Whoop)</h2>
+
+              {loadingWhoop ? (
+                <p>Loading fitness data...</p>
+              ) : unauthorized ? (
+                <p>
+                  Please <a href="/login">connect your WHOOP account</a> to view fitness data.
+                </p>
+              ) : errorWhoop ? (
+                <p>{`Error: ${errorWhoop}`}</p>
+              ) : whoopData.length === 0 ? (
+                <p>No recent workouts found.</p>
+              ) : (
+                <ul className="whoop-workout-list">
+                  {whoopData.map((workout) => (
+                    <li key={workout.id} className="whoop-workout-item">
+                      <strong>{new Date(workout.created_at).toLocaleDateString()}</strong>: {workout.sport_name} for {Math.round(workout.duration / 60)} minutes
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
             <Footer />
           </div>
         </div>
