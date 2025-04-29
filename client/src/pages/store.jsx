@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import NavBar from '../components/common/navBar';
 import Footer from '../components/common/footer';
