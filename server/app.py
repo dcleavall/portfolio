@@ -136,35 +136,46 @@ def stripe_webhook():
 
     return jsonify({'status': 'success'})
 
-# Whoop API Authenticate & Fetch Data
+
 @app.route('/whoop-data', methods=['GET'])
 def get_whoop_data():
-    whoop_username = environ.get("WHOOP_USERNAME")
-    whoop_password = environ.get("WHOOP_PASSWORD")
+    whoop_username = os.environ.get("WHOOP_USERNAME")
+    whoop_password = os.environ.get("WHOOP_PASSWORD")
 
     # --- Step 1: Authenticate with Whoop ---
     auth_url = "https://app.whoop.com/api/v3/auth/login"
     auth_headers = {"Content-Type": "application/json"}
     auth_payload = {"username": whoop_username, "password": whoop_password}
 
-    auth_response = requests.post(auth_url, headers=auth_headers, data=json.dumps(auth_payload))
-    if auth_response.status_code != 200:
-        return make_response(jsonify(error="Failed to authenticate with Whoop"), 401)
+    try:
+        auth_response = requests.post(auth_url, headers=auth_headers, data=json.dumps(auth_payload))
+        auth_response.raise_for_status()  # Raise an error for bad responses
 
-    access_token = auth_response.json().get("access_token")
-    if not access_token:
-        return make_response(jsonify(error="No access token received from Whoop"), 401)
+        access_token = auth_response.json().get("access_token")
+        if not access_token:
+            return make_response(jsonify(error="No access token received from Whoop"), 401)
 
-    # --- Step 2: Fetch Workout Data ---
-    workouts_url = "https://api.whoop.com/v1/workouts"
-    workout_headers = {"Authorization": f"Bearer {access_token}"}
-    workout_response = requests.get(workouts_url, headers=workout_headers)
+        # --- Step 2: Fetch Workout Data ---
+        workouts_url = "https://api.whoop.com/v1/workouts"
+        workout_headers = {"Authorization": f"Bearer {access_token}"}
+        workout_response = requests.get(workouts_url, headers=workout_headers)
 
-    if workout_response.status_code != 200:
-        return make_response(jsonify(error="Failed to fetch workout data"), 500)
+        workout_response.raise_for_status()  # Raise an error for bad responses
 
-    workouts_data = workout_response.json()
-    return jsonify(workouts_data)
+        workouts_data = workout_response.json()
+
+        # Transform the response data if necessary
+        workouts_list = [{
+            "id": workout.get("id"),
+            "created_at": workout.get("created_at"),
+            "sport_name": workout.get("sport_name"),
+            "duration": workout.get("duration")  # Duration in seconds
+        } for workout in workouts_data]
+
+        return jsonify(workouts_list)
+
+    except requests.exceptions.RequestException as e:
+        return make_response(jsonify(error=f"Request failed: {str(e)}"), 500)
 
 
 api.add_resource(PaymentIntentResource, '/create-payment-intent')

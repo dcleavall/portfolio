@@ -13,21 +13,27 @@ import './styles/store.css';
 const Store = () => {
   const [whoopData, setWhoopData] = useState([]);
   const [loadingWhoop, setLoadingWhoop] = useState(true);
+  const [errorWhoop, setErrorWhoop] = useState(null);  // Error state for Whoop data
 
-  
   useEffect(() => {
     window.scrollTo(0, 0);
 
     fetch('/whoop-data')
-    .then((res) => res.json())
-    .then((data) => {
-      setWhoopData(data);
-      setLoadingWhoop(false);
-    })
-    .catch((err) => {
-      console.error('Failed to fetch Whoop data:', err);
-      setLoadingWhoop(false);
-    });
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Failed to fetch Whoop data');
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setWhoopData(data);
+        setLoadingWhoop(false);
+      })
+      .catch((err) => {
+        console.error('Failed to fetch Whoop data:', err);
+        setErrorWhoop(err.message);
+        setLoadingWhoop(false);
+      });
   }, []);
 
   const currentSEO = SEO.find((item) => item.page === "store");
@@ -95,6 +101,8 @@ const Store = () => {
             <h2>Fitness Activity (Whoop)</h2>
             {loadingWhoop ? (
               <p>Loading fitness data...</p>
+            ) : errorWhoop ? (
+              <p>{`Error: ${errorWhoop}`}</p>
             ) : whoopData.length === 0 ? (
               <p>No recent workouts found.</p>
             ) : (
