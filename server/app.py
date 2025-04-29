@@ -17,8 +17,8 @@ from dotenv import load_dotenv
 
 # Initialize Stripe with your secret key
 stripe.api_key = environ.get('STRIPE_KEY')
-whoop_username = os.environ.get('WHOOP_USERNAME')
-whoop_password = os.environ.get('WHOOP_PASSWORD')
+whoop_username = environ.get('WHOOP_USERNAME')
+whoop_password = environ.get('WHOOP_PASSWORD')
 
 load_dotenv('.env')
 
