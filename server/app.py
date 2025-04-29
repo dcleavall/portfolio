@@ -151,6 +151,7 @@ def login():
 def callback():
     code = request.args.get('code')
     if not code:
+        print("Missing `code` in callback request.")
         return jsonify({"error": "Missing code"}), 400
 
     token_url = "https://api.whoop.com/oauth/oauth2/token"
@@ -162,14 +163,25 @@ def callback():
         "code": code
     }
 
+    print("Sending token request to WHOOP...")
     response = requests.post(token_url, data=data)
-    token_data = response.json()
+
+    print("WHOOP token response status:", response.status_code)
+    print("WHOOP token response body:", response.text)
+
+    try:
+        token_data = response.json()
+    except Exception as e:
+        print("Error decoding WHOOP token JSON:", e)
+        return jsonify({"error": "Invalid response from WHOOP"}), 500
 
     if "access_token" not in token_data:
-        return jsonify({"error": "Failed to get access token"}), 400
+        return jsonify({"error": "Failed to get access token", "details": token_data}), 400
 
     session['access_token'] = token_data["access_token"]
+    print("Access token successfully stored in session.")
     return redirect('/whoop-data')
+
 
 
 @app.route('/whoop-data')
