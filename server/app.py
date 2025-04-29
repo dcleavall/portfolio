@@ -7,7 +7,6 @@ from email.mime.multipart import MIMEMultipart
 import os
 from werkzeug.exceptions import NotFound
 import requests
-import json
 
 
 # Internal Imports
