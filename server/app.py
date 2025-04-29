@@ -188,7 +188,7 @@ def callback():
 def whoop_data():
     access_token = session.get('access_token')
     if not access_token:
-        return redirect('/login')
+        return jsonify({"error": "Unauthorized"}), 401  # Instead of redirect
 
     headers = {"Authorization": f"Bearer {access_token}"}
     response = requests.get("https://api.whoop.com/v1/workouts", headers=headers)
@@ -197,6 +197,7 @@ def whoop_data():
         return jsonify({"error": "Failed to fetch workouts"}), 500
 
     return jsonify(response.json())
+
 
 
 api.add_resource(PaymentIntentResource, '/create-payment-intent')
