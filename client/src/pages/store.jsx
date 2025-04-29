@@ -11,6 +11,10 @@ import {products} from '../data/products';
 import './styles/store.css';
 
 const Store = () => {
+  const [whoopData, setWhoopData] = useState([]);
+  const [loadingWhoop, setLoadingWhoop] = useState(true);
+
+  
   useEffect(() => {
     window.scrollTo(0, 0);
 
