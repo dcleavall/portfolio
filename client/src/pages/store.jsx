@@ -18,11 +18,12 @@ const Store = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    fetch('/whoop-data')
+    fetch('/whoop-data', {
+      credentials: 'include' // ✅ This allows the session to work across domains
+    })
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
-          // Redirect immediately to login if not authorized
-          window.location.href = "/login";
+          window.location.href = "/login"; // 🔁 Redirect to Flask login
           throw new Error("Unauthorized. Redirecting to WHOOP login.");
         }
         if (!res.ok) {

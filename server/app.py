@@ -139,6 +139,11 @@ def stripe_webhook():
     return jsonify({'status': 'success'})
 
 
+from flask_cors import CORS
+
+# Enable CORS with support for credentials
+CORS(app, supports_credentials=True)
+
 @app.route('/login')
 def login():
     auth_url = (
@@ -151,7 +156,6 @@ def login():
 def callback():
     code = request.args.get('code')
     if not code:
-        print("Missing `code` in callback request.")
         return jsonify({"error": "Missing code"}), 400
 
     token_url = "https://api.whoop.com/oauth/oauth2/token"
@@ -163,32 +167,25 @@ def callback():
         "code": code
     }
 
-    print("Sending token request to WHOOP...")
     response = requests.post(token_url, data=data)
+    if response.status_code != 200:
+        return jsonify({"error": "Failed to fetch token"}), 400
 
-    print("WHOOP token response status:", response.status_code)
-    print("WHOOP token response body:", response.text)
+    token_data = response.json()
+    access_token = token_data.get("access_token")
+    if not access_token:
+        return jsonify({"error": "No access token returned"}), 400
 
-    try:
-        token_data = response.json()
-    except Exception as e:
-        print("Error decoding WHOOP token JSON:", e)
-        return jsonify({"error": "Invalid response from WHOOP"}), 500
+    session['access_token'] = access_token
 
-    if "access_token" not in token_data:
-        return jsonify({"error": "Failed to get access token", "details": token_data}), 400
-
-    session['access_token'] = token_data["access_token"]
-    print("Access token successfully stored in session.")
-    return redirect('/whoop-data')
-
-
+    # ✅ redirect back to your React frontend, not to /whoop-data
+    return redirect("https://portfolio-bghr.onrender.com//store")  # Update this to your frontend URL if hosted
 
 @app.route('/whoop-data')
 def whoop_data():
     access_token = session.get('access_token')
     if not access_token:
-        return jsonify({"error": "Unauthorized"}), 401  # Instead of redirect
+        return jsonify({"error": "Unauthorized"}), 401
 
     headers = {"Authorization": f"Bearer {access_token}"}
     response = requests.get("https://api.whoop.com/v1/workouts", headers=headers)
@@ -197,6 +194,7 @@ def whoop_data():
         return jsonify({"error": "Failed to fetch workouts"}), 500
 
     return jsonify(response.json())
+
 
 
 

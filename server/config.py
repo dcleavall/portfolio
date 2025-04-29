@@ -37,4 +37,4 @@ bcrypt = Bcrypt(app)
 # Instantiate REST API
 api = Api(app)
 
-CORS(app)
+CORS(app, supports_credentials=True)
