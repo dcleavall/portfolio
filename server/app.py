@@ -14,6 +14,8 @@ from config import db, app, api, stripe
 from models import Contact 
 from dotenv import load_dotenv
 
+load_dotenv('.env')
+
 
 # Initialize Stripe with your secret key
 stripe.api_key = environ.get('STRIPE_KEY')
@@ -21,8 +23,6 @@ client_id = environ.get('WHOOP_CLIENT_ID')
 client_secret = environ.get('WHOOP_CLIENT_SECRET')
 redirect_uri = environ.get('REDIRECT_URI')
 
-
-load_dotenv('.env')
 
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
