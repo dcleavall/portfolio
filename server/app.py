@@ -17,6 +17,9 @@ from dotenv import load_dotenv
 
 # Initialize Stripe with your secret key
 stripe.api_key = environ.get('STRIPE_KEY')
+client_id = environ.get('WHOOP_CLIENT_ID')
+client_secret = environ.get('WHOOP_CLIENT_SECRET')
+redirect_uri = environ.get('REDIRECT_URI')
 
 
 load_dotenv('.env')
@@ -135,10 +138,6 @@ def stripe_webhook():
 
     return jsonify({'status': 'success'})
 
-
-client_id = environ.get("WHOOP_CLIENT_ID")
-client_secret = environ.get("WHOOP_CLIENT_SECRET")
-redirect_uri = environ.get("REDIRECT_URI")
 
 @app.route('/login')
 def login():
