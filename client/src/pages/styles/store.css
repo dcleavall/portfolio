@@ -60,6 +60,29 @@
     height: auto;
     border-radius: 8px;
   }
+
+  .whoop-section {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+  }
+  
+  .whoop-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .whoop-workout-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .whoop-workout-item {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+  }
+  
   
   @media (max-width: 768px) {
     .store-container {

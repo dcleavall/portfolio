@@ -13,6 +13,17 @@ import './styles/store.css';
 const Store = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    fetch('/whoop-data')
+    .then((res) => res.json())
+    .then((data) => {
+      setWhoopData(data);
+      setLoadingWhoop(false);
+    })
+    .catch((err) => {
+      console.error('Failed to fetch Whoop data:', err);
+      setLoadingWhoop(false);
+    });
   }, []);
 
   const currentSEO = SEO.find((item) => item.page === "store");
@@ -76,6 +87,22 @@ const Store = () => {
             </div>
           </div>
           <div className="page-footer">
+          <div className="whoop-section">
+            <h2>Fitness Activity (Whoop)</h2>
+            {loadingWhoop ? (
+              <p>Loading fitness data...</p>
+            ) : whoopData.length === 0 ? (
+              <p>No recent workouts found.</p>
+            ) : (
+              <ul className="whoop-workout-list">
+                {whoopData.map((workout) => (
+                  <li key={workout.id} className="whoop-workout-item">
+                    <strong>{new Date(workout.created_at).toLocaleDateString()}</strong>: {workout.sport_name} for {Math.round(workout.duration / 60)} minutes
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
             <Footer />
           </div>
         </div>
