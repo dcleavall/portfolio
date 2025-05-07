@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import NavBar from '../components/common/navBar';
 import Footer from '../components/common/footer';
@@ -16,7 +16,7 @@ const Store = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    
+
   }, []);
 
   const currentSEO = SEO.find((item) => item.page === "store");
