@@ -6,8 +6,9 @@ const SEO = [
 		keywords: [
 			"Derrick Cleavall", "Freelance Web Developer", "Full Stack Developer",
 			"React", "Flask", "API Integration", "Albuquerque Developer",
-			"New Mexico Software", "Contract Developer", "Quality Developer",
-			"Stripe Integration", "Remote Developer", "Backend Developer", "Frontend Developer", "Good Developer Albuquerque"
+			"New Mexico Software", "Contract Developer", "Quality Websites",
+			"Stripe Integration", "Remote Developer", "Backend Developer", "Frontend Developer", 
+			"Good Developer Albuquerque", "SEO Albuquerque", "Search Engine Optimization", "Digital Marketing"
 		],
 	},
 
@@ -18,7 +19,7 @@ const SEO = [
 		keywords: [
 			"Derrick Cleavall", "Full Stack Engineer", "Albuquerque Developer",
 			"Freelance Developer", "Software Engineer", "React", "Flask",
-			"Open Source Contributor", "Remote Web Developer", "Tech in New Mexico"
+			"Remote Web Developer", "Tech in New Mexico"
 		],
 	},
 
@@ -28,7 +29,7 @@ const SEO = [
 			"Read about my developer journey, lessons learned in full stack engineering, and insights on building real-world applications.",
 		keywords: [
 			"Developer Blog", "Full Stack Insights", "Programming Journey",
-			"Tech Articles", "Learning Web Development", "React Blog",
+			"Tech Articles", "How to implement Google API", "React Blog", "Google API Integration",
 			"Software Engineering"
 		],
 	},
@@ -50,7 +51,7 @@ const SEO = [
 			"Interested in working together? Contact me for freelance or contract software development in Albuquerque or remotely.",
 		keywords: [
 			"Hire Web Developer", "Freelance Software Engineer", "Albuquerque Developer",
-			"Full Stack Developer Contact", "New Mexico Tech Talent", 
+			"Full Stack Developer Contact", "New Mexico Tech Talent", "New Mexico Developer", "Developer in for Hire, New Mexico",
 			"Remote Developer", "Freelance React Developer"
 		],
 	},
