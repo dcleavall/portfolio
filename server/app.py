@@ -19,9 +19,9 @@ load_dotenv('.env')
 
 # Initialize Stripe with your secret key
 stripe.api_key = environ.get('STRIPE_KEY')
-client_id = os.getenv('WHOOP_CLIENT_ID')
-client_secret = os.getenv('WHOOP_CLIENT_SECRET')
-redirect_uri = os.getenv('REDIRECT_URI')
+# client_id = os.getenv('WHOOP_CLIENT_ID')
+# client_secret = os.getenv('WHOOP_CLIENT_SECRET')
+# redirect_uri = os.getenv('REDIRECT_URI')
 
 
 @app.route("/", defaults={"path": ""})
@@ -137,65 +137,6 @@ def stripe_webhook():
         print(f'PaymentIntent was successful!')
 
     return jsonify({'status': 'success'})
-
-
-from flask_cors import CORS
-
-# Enable CORS with support for credentials
-CORS(app, supports_credentials=True)
-
-@app.route('/login')
-def login():
-    auth_url = (
-        f"https://api.whoop.com/oauth/oauth2/auth?client_id={client_id}"
-        f"&redirect_uri={redirect_uri}&response_type=code"
-    )
-    return redirect(auth_url)
-
-@app.route('/callback')
-def callback():
-    code = request.args.get('code')
-    if not code:
-        return jsonify({"error": "Missing code"}), 400
-
-    token_url = "https://api.whoop.com/oauth/oauth2/token"
-    data = {
-        "client_id": client_id,
-        "client_secret": client_secret,
-        "grant_type": "authorization_code",
-        "redirect_uri": redirect_uri,
-        "code": code
-    }
-
-    response = requests.post(token_url, data=data)
-    if response.status_code != 200:
-        return jsonify({"error": "Failed to fetch token"}), 400
-
-    token_data = response.json()
-    access_token = token_data.get("access_token")
-    if not access_token:
-        return jsonify({"error": "No access token returned"}), 400
-
-    session['access_token'] = access_token
-
-    # ✅ redirect back to your React frontend, not to /whoop-data
-    return redirect("https://portfolio-bghr.onrender.com//store")  # Update this to your frontend URL if hosted
-
-@app.route('/whoop-data')
-def whoop_data():
-    access_token = session.get('access_token')
-    if not access_token:
-        return jsonify({"error": "Unauthorized"}), 401
-
-    headers = {"Authorization": f"Bearer {access_token}"}
-    response = requests.get("https://api.whoop.com/v1/workouts", headers=headers)
-
-    if response.status_code != 200:
-        return jsonify({"error": "Failed to fetch workouts"}), 500
-
-    return jsonify(response.json())
-
-
 
 
 api.add_resource(PaymentIntentResource, '/create-payment-intent')

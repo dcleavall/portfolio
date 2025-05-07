@@ -11,35 +11,12 @@ import { products } from '../data/products';
 import './styles/store.css';
 
 const Store = () => {
-  const [whoopData, setWhoopData] = useState([]);
-  const [loadingWhoop, setLoadingWhoop] = useState(true);
-  const [errorWhoop, setErrorWhoop] = useState(null);
+
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    fetch('/whoop-data', {
-      credentials: 'include' // ✅ This allows the session to work across domains
-    })
-      .then((res) => {
-        if (res.status === 401 || res.status === 403) {
-          window.location.href = "/login"; // 🔁 Redirect to Flask login
-          throw new Error("Unauthorized. Redirecting to WHOOP login.");
-        }
-        if (!res.ok) {
-          throw new Error('Failed to fetch Whoop data');
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setWhoopData(data);
-        setLoadingWhoop(false);
-      })
-      .catch((err) => {
-        console.error('Whoop data error:', err.message);
-        setErrorWhoop(err.message);
-        setLoadingWhoop(false);
-      });
+    
   }, []);
 
   const currentSEO = SEO.find((item) => item.page === "store");
@@ -96,26 +73,6 @@ const Store = () => {
           </div>
 
           <div className="page-footer">
-            <div className="whoop-section">
-              <h2>Fitness Activity (Whoop)</h2>
-
-              {loadingWhoop ? (
-                <p>Loading fitness data...</p>
-              ) : errorWhoop ? (
-                <p>{`Error: ${errorWhoop}`}</p>
-              ) : whoopData.length === 0 ? (
-                <p>No recent workouts found.</p>
-              ) : (
-                <ul className="whoop-workout-list">
-                  {whoopData.map((workout) => (
-                    <li key={workout.id} className="whoop-workout-item">
-                      <strong>{new Date(workout.created_at).toLocaleDateString()}</strong>: {workout.sport_name} for {Math.round(workout.duration / 60)} minutes
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-
             <Footer />
           </div>
         </div>
