@@ -22,7 +22,7 @@ const INFO = {
 	about: {
 		title: "Derrick Cleavall | Albuquerque, NM",
 		description:
-			"End-to-end, I use various tools and technologies depending on client specifications. I Primarily write programs in Javascript and Python with current frameworks/libraries. Continuously learning, sharpening skills, and adopting new practices in this endless game.",
+			"End-to-end, I use various tools and technologies depending on client specifications. I primarily write programs in Javascript and Python with current frameworks/libraries. Continuously learning, sharpening skills, and adopting new practices in this abundant game.",
 		skills: [
 			"JavaScript",
 			"Python",
@@ -50,14 +50,14 @@ const INFO = {
 	store: {
 		title: "Store",
 		description:
-			"Welcome to my store! Here you can find all of my latest products, including templates, source code, and more. Check out the products below and start building personalized applications yourself! *Note: This page is still under construction and will demonstrate Stripe API integration for payment processing.",
+			"Welcome, check out the products below--> *Note: This page is still under construction and will demonstrate Stripe API integration for payment processing.",
 	},
 
 	projects: [
 		{
 			title: "Project 1",
 			description:
-				"This project is a full-stack application that uses React.js on the frontend and Python on the backend. This application was built for a commercial real estate group that needed a way to organize their listings internally. It utilizes PostgresSql for the database, Google API to communicate with Google Drive, smtp for email notifications, report lib for generating documents, and render for hosting services.",
+				"This project is a full-stack application that uses React.js on the frontend and Python on the backend. This application was built for a commercial real estate group that needed a way to organize their listings internally. It utilizes PostgresSql for the database, Google API to communicate with Google Drive, smtp for email automations, report lib auto-generating documents, and render for hosting services.",
 			logo: "https://cdn.jsdelivr.net/npm/programming-languages-logos/src/python/python.png",
 			linkText: "View Project",
 			link: "https://github.com/dcleavall/Berkshire",
