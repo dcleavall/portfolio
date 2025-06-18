@@ -24,17 +24,6 @@ const SEO = [
 	},
 
 	{
-		page: "articles",
-		description:
-			"Read about my developer journey, lessons learned in full stack engineering, and insights on building real-world applications.",
-		keywords: [
-			"Developer Blog", "Full Stack Insights", "Programming Journey",
-			"Tech Articles", "How to implement Google API", "React Blog", "Google API Integration",
-			"Software Engineering"
-		],
-	},
-
-	{
 		page: "projects",
 		description:
 			"Explore my portfolio of full stack projects including commercial platforms, API tools, and automation apps built with React and Flask.",

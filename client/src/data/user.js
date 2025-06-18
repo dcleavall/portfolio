@@ -40,17 +40,11 @@ const INFO = {
 			"Backend Development",
 		],
 	},
-
-	articles: {
-		title: "I'm actively programming and documenting my journey.",
-		description:
-			"Below you will find a timeline of my latest articles and discoveries.",
-	},
-
+	
 	store: {
 		title: "Store",
 		description:
-			"Welcome, check out the products below--> *Note: This page is still under construction and will demonstrate Stripe API integration for payment processing.",
+			"Welcome, check out the products below. *Note: This page is still under construction and will demonstrate Stripe API integration for payment processing.",
 	},
 
 	projects: [
