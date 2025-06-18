@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+// import { FaShoppingCart } from "react-icons/fa";
 
 import "./styles/navBar.css";
-import CartModal from '../store/CartModal'; 
-
+import CartModal from "../store/CartModal";
 
 const NavBar = (props) => {
 	const { active } = props;
@@ -48,15 +48,6 @@ const NavBar = (props) => {
 										: "nav-item"
 								}
 							>
-								<Link to="/articles">Articles</Link>
-							</li>
-							<li
-								className={
-									active === "contact"
-										? "nav-item active"
-										: "nav-item"
-								}
-							>
 								<Link to="/contact">Contact</Link>
 							</li>
 							<li
@@ -68,8 +59,8 @@ const NavBar = (props) => {
 							>
 								<Link to="/store">Store</Link>
 							</li>
-							<li>
-								<CartModal />
+							<li className="nav-item cart-icon-button">
+								<CartModal/>
 							</li>
 						</ul>
 					</div>

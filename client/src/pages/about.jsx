@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import Slider from "react-slick";
 
 import NavBar from "../components/common/navBar";
 import Footer from "../components/common/footer";
@@ -9,6 +10,8 @@ import Socials from "../components/about/socials";
 import INFO from "../data/user";
 import SEO from "../data/seo";
 
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "./styles/about.css";
 
 const About = () => {
@@ -17,6 +20,18 @@ const About = () => {
   }, []);
 
   const currentSEO = SEO.find((item) => item.page === "about");
+
+  const sliderSettings = {
+    vertical: true,
+    infinite: true,
+    slidesToShow: 7,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    arrows: false,
+    dots: false,
+    pauseOnHover: true,
+  };
 
   return (
     <HelmetProvider>
@@ -43,14 +58,18 @@ const About = () => {
                 <div className="subtitle about-subtitle">
                   {INFO.about.description}
                 </div>
-				<br/>
+                <br />
                 <div className="about-skills">
                   <h3>Skills:</h3>
-                  <ul>
-                    {INFO.about.skills.map((skill, index) => (
-                      <li key={index}>{skill}</li>
-                    ))}
-                  </ul>
+                  <div className="skills-slider">
+                    <Slider {...sliderSettings}>
+                      {INFO.about.skills.map((skill, index) => (
+                        <div key={index} className="skill-slide">
+                          {skill}
+                        </div>
+                      ))}
+                    </Slider>
+                  </div>
                 </div>
               </div>
 

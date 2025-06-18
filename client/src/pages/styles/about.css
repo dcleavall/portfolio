@@ -138,5 +138,22 @@
   .about-skills li {
 	margin-bottom: 5px; /* Example: Adjust margin between list items */
   }
+
+  .skills-slider {
+	height: 350px;
+	overflow: hidden;
+	margin-top: 10px;
+  }
+  
+  .skill-slide {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 50px;
+	font-size: 1rem;
+	border-bottom: 1px solid #ccc;
+	color: #333;
+  }
+  
   
   

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { FaShoppingCart } from 'react-icons/fa';
 import { CartContext } from './CartContext';
 import { getProductData } from '../../data/products';
 import './CartModal.css';
@@ -12,7 +13,6 @@ const CartModal = () => {
         setIsOpen(!isOpen);
     };
 
-    // Calculate total quantities of each item type
     const getItemQuantities = () => {
         const quantities = { tshirt: 0, hoodie: 0 };
         items.forEach(item => {
@@ -38,9 +38,10 @@ const CartModal = () => {
 
     return (
         <div className="cart-modal-container">
-            <button className="cart-button" onClick={toggleModal}>
-                Cart
+            <button className="cart-button" onClick={toggleModal} aria-label="Cart">
+                <FaShoppingCart size={18} />
             </button>
+
             {isOpen && (
                 <div className="cart-modal">
                     <button className="modal-close-button" onClick={toggleModal}>
