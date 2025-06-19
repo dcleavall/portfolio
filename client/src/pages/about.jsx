@@ -27,7 +27,7 @@ const About = () => {
     slidesToShow: 7,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 1500,
     arrows: false,
     dots: false,
     pauseOnHover: true,

@@ -1,5 +1,6 @@
 import React from "react";
 import { faBriefcase } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "framer-motion";  // <-- import motion
 
 import Card from "../common/card";
 
@@ -14,11 +15,14 @@ const Works = () => {
 				body={
 					<div className="works-body">
 						<div className="work">
-							<img
-								src="./freelance.png"
-								alt="freelance"
-								className="work-image"
-							/>
+						<motion.img
+						src="/freelance.png"
+						alt="freelance"
+						className="work-image"
+						animate={{ scale: [1, 1.05, 1] }}
+						transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+						/>
+
 							<div className="work-title">Freelance</div>
 							<div className="work-subtitle">
 								Software Developer
@@ -27,11 +31,15 @@ const Works = () => {
 						</div>
 
 						<div className="work">
-							<img
-								src="./plant.png"
-								alt="cultivator"
-								className="work-image"
-							/>
+						<motion.img
+						src="/plant.png"
+						alt="plant"
+						className="work-image"
+						animate={{ scale: [1, 1.05, 1] }}
+						transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+						/>
+
+
 							<div className="work-title">Cultivator</div>
 							<div className="work-subtitle">
 								Production & Dynamics
