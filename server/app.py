@@ -19,11 +19,10 @@ load_dotenv('.env')
 
 # Initialize Stripe with your secret key
 stripe.api_key = environ.get('STRIPE_KEY')
-# client_id = os.getenv('WHOOP_CLIENT_ID')
-# client_secret = os.getenv('WHOOP_CLIENT_SECRET')
-# redirect_uri = os.getenv('REDIRECT_URI')
 
 
+
+# Serve React build files
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def serve(path):
@@ -32,6 +31,11 @@ def serve(path):
         return send_from_directory(app.static_folder, path)
     else:
         return send_from_directory(app.static_folder, "index.html")
+
+@app.errorhandler(404)
+def not_found(e):
+    return send_from_directory(app.static_folder, "index.html")
+
 
 
 class ContactResource(Resource):
