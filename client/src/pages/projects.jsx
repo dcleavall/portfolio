@@ -13,7 +13,7 @@ import "./styles/projects.css";
 
 const Projects = () => {
 	useEffect(() => {
-		window.scrollTo(0, 0);
+	window.scrollTo(0, 0);
 	}, []);
 
 	const currentSEO = SEO.find((item) => item.page === "projects");
