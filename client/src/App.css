@@ -17,9 +17,16 @@
 	background-color: rgb(0, 0, 0);
 }
 
+body {
+	margin: 0;
+	overflow-x: hidden;
+}
+
 .page-content {
 	background-color: white;
 	position: relative;
+	max-width: 100%;
+	overflow-x: hidden;
 }
 
 .page-content:before,
@@ -28,19 +35,18 @@
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	width: calc((100% - 1200px) / 2);
+	width: 100vw;
 	background-color: #fafafa;
 	border: 1px solid #f4f4f5;
+	z-index: -1;
 }
 
 .page-content:before {
-	left: 0;
-	z-index: 1;
+	left: -100vw;
 }
 
 .page-content:after {
-	right: 0;
-	z-index: 1;
+	right: -100vw;
 }
 
 .content-wrapper {
@@ -80,7 +86,7 @@
 @media (max-width: 1270px) {
 	.page-content:before,
 	.page-content:after {
-		width: calc((100% - 90%) / 2);
+		width: 100vw;
 	}
 
 	.content-wrapper {
@@ -93,7 +99,7 @@
 @media (max-width: 1024px) {
 	.page-content:before,
 	.page-content:after {
-		width: calc((100% - 950px) / 2);
+		width: 100vw;
 	}
 
 	.content-wrapper {
