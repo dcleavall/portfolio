@@ -10,13 +10,23 @@
 	width: 400px;
 }
 
-.work-image {
+.freelance-image {
 	height: 30px;
 	width: 30px;
 	border-radius: 50%;
-	outline: 6px solid rgb(250, 249, 249);
+	outline: 6px solid rgb(253, 252, 252);
 	box-shadow:
-		0 6px 16px rgba(14, 121, 39, 0.4), /* stronger green */
+	0 10px 20px rgba(19, 99, 184, 0.4), /* stronger green */
+		0 2px 4px rgba(0, 0, 0, 0.1);      /* subtle depth with neutral tone */;
+}
+
+.plant-image {
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+	outline: 6px solid rgb(251, 249, 249);
+	box-shadow:
+		0 10px 20px rgba(9, 143, 41, 0.4), /* stronger green */
 		0 2px 4px rgba(0, 0, 0, 0.1);      /* subtle depth with neutral tone */;
 }
 

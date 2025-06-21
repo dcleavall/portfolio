@@ -23,7 +23,7 @@ body {
 }
 
 .page-content {
-	background-color: white;
+	background-color: rgb(251, 249, 249);
 	position: relative;
 	max-width: 100%;
 	overflow-x: hidden;

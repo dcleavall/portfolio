@@ -18,8 +18,8 @@ const Works = () => {
 						<motion.img
 						src="/freelance.png"
 						alt="freelance"
-						className="work-image"
-						animate={{ scale: [1, 1.05, 1] }}
+						className="freelance-image"
+						animate={{ scale: [1.5, .5, 1.5] }}
 						transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
 						/>
 
@@ -34,8 +34,8 @@ const Works = () => {
 						<motion.img
 						src="/plant.png"
 						alt="plant"
-						className="work-image"
-						animate={{ scale: [1, 1.05, 1] }}
+						className="plant-image"
+						animate={{ scale: [1.5, .5, 1.5] }}
 						transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
 						/>
 

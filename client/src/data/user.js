@@ -16,8 +16,10 @@ const INFO = {
 	homepage: {
 		title: "Software Developer | Albuquerque, NM",
 		description:
-			"I'm a full stack software developer with heavy emphasis in python. I specialize in building scalable, secure, and reliable web applications. My goal is to provide high-quality code that follows best industry standards, pertaining to: design, infrastructure, and performance, of any service, product, or feature. Refer to my agency for more resources and information on how I can help you build your next project.",
-	},
+			"I'm a full stack software developer with heavy emphasis in Python. I specialize in building scalable, secure, and reliable web applications. My goal is to provide high-quality code that follows best industry standards, pertaining to: design, infrastructure, and performance, of any service, product, or feature.",
+		agencyNote:
+			"Refer to my agency, TheCodingChicken, for more resources and information on how I can help you build your next project.",
+	},	
 
 	about: {
 		title: "Derrick Cleavall | Albuquerque, NM",
